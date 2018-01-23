@@ -9,6 +9,11 @@ class OrderChecker
     fraudulent_orders = filter_fraudulent_orders
     fraudulent_orders.map { |order| FraudResult.new(true, order.last.order_id) }
   end
+
+  protected
+  def filter_fraudulent_orders
+    raise("Redefine filter_fraudulent_orders in the subclass")
+  end
 end
 
 class EmailChecker < OrderChecker
